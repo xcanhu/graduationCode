@@ -49,8 +49,8 @@
 
 1. **克隆项目**
    ```bash
-   git clone https://github.com/your-username/bus-ticket-miniprogram.git
-   cd bus-ticket-miniprogram
+   git clone https://github.com/xcanhu/graduationCode.git
+   cd graduationCode
    ```
 
 2. **安装依赖**
@@ -134,4 +134,4 @@
 
 ## 许可证
 
-MIT 
+MIT
