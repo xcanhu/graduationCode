@@ -1,0 +1,28 @@
+{
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "miniprogramRoot": "",
+  "compileType": "miniprogram",
+  "projectname": "巴士售票小程序",
+  "setting": {
+    "useCompilerPlugins": [],
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "es6": true,
+    "enhance": true
+  },
+  "libVersion": "2.33.0",
+  "cloudfunctionRoot": "cloudfunctions/",
+  "condition": {},
+  "appid": "wx38e5893b1cae709e",
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  }
+}

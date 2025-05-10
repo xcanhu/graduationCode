@@ -1,0 +1,55 @@
+<view class="page">
+  <view class="header">
+    <view class="back-btn" bindtap="goBack">
+      <text class="iconfont icon-back"></text>
+    </view>
+    <view class="route-info">
+      <text class="route-text">{{departure}} - {{destination}}</text>
+      <picker mode="date" value="{{date}}" bindchange="changeDate">
+        <view class="date-picker">
+          <text>{{date}}</text>
+          <text class="iconfont icon-calendar" style="margin-left: 10rpx;"></text>
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <view class="content">
+    <view class="filter-bar">
+      <view class="filter-item active">全部</view>
+      <view class="filter-item">上午</view>
+      <view class="filter-item">下午</view>
+      <view class="filter-item">晚上</view>
+    </view>
+
+    <view class="ticket-list" wx:if="{{!loading && tickets.length > 0}}">
+      <block wx:for="{{tickets}}" wx:key="id">
+        <view class="ticket-item" bindtap="selectTicket" data-id="{{item.id}}">
+          <view class="ticket-time">
+            <text class="time">{{item.time}}</text>
+            <text class="duration">{{item.duration}}</text>
+          </view>
+          <view class="ticket-info">
+            <text class="type">{{item.type}}</text>
+            <text class="seats">剩余座位: {{item.seats}}</text>
+          </view>
+          <view class="ticket-price">
+            <text class="price">¥{{item.price}}</text>
+            <view class="select-btn">选择</view>
+          </view>
+        </view>
+      </block>
+    </view>
+
+    <view class="loading-container" wx:if="{{loading}}">
+      <view class="loading">
+        <text>加载中...</text>
+      </view>
+    </view>
+
+    <view class="no-data" wx:if="{{tickets.length === 0}}">
+      <image class="no-data-image" src="/assets/images/no-data.png"></image>
+      <text class="no-data-text">{{noDataMessage || '暂无符合条件的车票'}}</text>
+    </view>
+  </view>
+</view>

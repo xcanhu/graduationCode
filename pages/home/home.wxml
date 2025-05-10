@@ -1,0 +1,142 @@
+<view class="page">
+  <view class="header">
+    <view class="app-title">巴士售票</view>
+  </view>
+  
+  <view class="content">
+    <view class="search-card">
+      <view class="location-items">
+        <view class="location-item from">
+          <text class="location-icon iconfont icon-location-filled"></text>
+          <view class="location-name">广州</view>
+        </view>
+        <view class="location-switch">
+          <text class="iconfont icon-switch" bindtap="exchangeLocations"></text>
+        </view>
+        <view class="location-item to">
+          <text class="location-icon iconfont icon-location"></text>
+          <view class="location-name">深圳</view>
+        </view>
+      </view>
+      
+      <view class="date-item">
+        <text class="date-icon iconfont icon-calendar"></text>
+        <picker mode="date" value="{{selectedDate}}" start="{{startDate}}" end="{{endDate}}" bindchange="bindDateChange">
+          <view class="date-info">
+            <text class="date-value">{{formatDisplayDate}}</text>
+            <text class="date-day">周五</text>
+          </view>
+        </picker>
+      </view>
+      
+      <button class="search-btn" bindtap="searchTickets">查询车票</button>
+    </view>
+
+    <view class="weather-card">
+      <view class="weather-header">
+        <text class="weather-title">天气预报</text>
+        <text class="weather-date">今天 11月20日</text>
+      </view>
+      <view class="weather-content">
+        <view class="weather-item">
+          <text class="weather-location">出发地 广州</text>
+          <view class="weather-info">
+            <image class="weather-icon" src="{{icons.weatherIcons.sunny}}" mode="aspectFit"></image>
+            <view class="weather-details">
+              <text class="temperature">25°C</text>
+              <text class="weather-desc">晴天</text>
+            </view>
+          </view>
+        </view>
+        <view class="weather-item">
+          <text class="weather-location">目的地 深圳</text>
+          <view class="weather-info">
+            <image class="weather-icon" src="{{icons.weatherIcons.cloudy}}" mode="aspectFit"></image>
+            <view class="weather-details">
+              <text class="temperature">23°C</text>
+              <text class="weather-desc">多云</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="ai-assistant">
+      <view class="ai-header">
+        <image class="ai-avatar" src="{{icons.otherIcons.aiAvatar}}" mode="aspectFit"></image>
+        <view class="ai-title">AI快捷购票</view>
+        <button class="use-btn" bindtap="navigateToAiAssistant">立即使用</button>
+      </view>
+      <view class="ai-input-section">
+        <input type="text" placeholder="输入您的出行需求，例如：明天下午去深圳" class="ai-input" bindinput="inputAiQuery" value="{{aiInput}}" />
+        <button class="send-btn" bindtap="processAiQuery">
+          <text class="iconfont icon-right"></text>
+        </button>
+      </view>
+    </view>
+
+    <view class="quick-select">
+      <text class="section-title">快捷选择</text>
+      <view class="city-grid">
+        <view class="city-item" wx:for="{{cities}}" wx:key="index" bindtap="selectCity" data-city="{{item.name}}">
+          <image class="city-bg" src="{{item.image}}"></image>
+          <text class="city-name">{{item.name}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="popular-routes">
+      <text class="section-title">热门路线</text>
+      <view class="routes-list">
+        <block wx:for="{{routes}}" wx:key="index">
+          <view class="route-item">
+            <view class="route-info">
+              <image class="route-icon" src="{{item.image}}"></image>
+              <view class="route-details">
+                <text class="route-name">{{item.from}} - {{item.to}}</text>
+                <text class="route-desc">{{item.description}}</text>
+              </view>
+            </view>
+            <view class="route-price">
+              <text class="price-amount">¥{{item.price}}</text>
+              <text class="price-label">起</text>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <view class="promotions">
+      <text class="section-title">优惠活动</text>
+      <scroll-view scroll-x class="promotion-scroll">
+        <view class="promotion-list">
+          <block wx:for="{{promotions}}" wx:key="index">
+            <view class="promo-item">
+              <image src="{{item.image}}" class="promo-image"></image>
+              <view class="promo-overlay"></view>
+              <view class="promo-info">
+                <text class="promo-title">{{item.title}}</text>
+                <text class="promo-desc">{{item.description}}</text>
+              </view>
+            </view>
+          </block>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <view class="tab-bar">
+    <view class="tab-item active">
+      <text class="iconfont icon-home" style="color: #15B8A6;"></text>
+      <text class="tab-label">首页</text>
+    </view>
+    <view class="tab-item" bindtap="navigateToOrder">
+      <text class="iconfont icon-list" style="color: #999;"></text>
+      <text class="tab-label">订单</text>
+    </view>
+    <view class="tab-item" bindtap="navigateToMine">
+      <text class="iconfont icon-person" style="color: #999;"></text>
+      <text class="tab-label">我的</text>
+    </view>
+  </view>
+</view>

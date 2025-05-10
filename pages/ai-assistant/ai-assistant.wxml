@@ -1,0 +1,157 @@
+<view class="page">
+  <navigation-bar title="AI智能助手" back="{{true}}"></navigation-bar>
+  
+  <view class="content">
+    <view class="ai-header">
+      <image class="ai-avatar" src="/assets/icons/png/ai-avatar.png"></image>
+      <view class="ai-info">
+        <text class="ai-title">DeepSeek智能助手</text>
+        <text class="ai-desc">我可以帮您快速找到最优的出行方案</text>
+      </view>
+    </view>
+    
+    <!-- API状态提示 -->
+    <view wx:if="{{apiStatusMessage}}" class="api-status-tip {{apiStatusType}}">
+      <text class="iconfont {{apiStatusType === 'warning' ? 'icon-warning' : 'icon-info'}}"></text>
+      <text>{{apiStatusMessage}}</text>
+    </view>
+    
+    <view class="chat-container">
+      <scroll-view 
+        scroll-y="{{true}}" 
+        class="chat-messages" 
+        scroll-into-view="{{scrollToMessage}}"
+        enhanced="{{true}}"
+        show-scrollbar="{{false}}"
+        bounces="{{true}}"
+        scroll-anchoring="{{true}}">
+        <!-- 欢迎消息 -->
+        <view class="message ai">
+          <view class="message-content">
+            <text>您好！我是您的智能出行助手，由DeepSeek大模型提供支持。请告诉我您的出行需求，例如：
+            - 明天下午去深圳
+            - 后天早上从广州到珠海的车票
+            - 周末去东莞的便宜车票</text>
+          </view>
+        </view>
+        
+        <!-- 消息列表 -->
+        <block wx:for="{{messages}}" wx:key="index">
+          <view id="msg-{{index}}" class="message {{item.type}}">
+            <view class="message-content">
+              <text>{{item.content}}</text>
+            </view>
+            
+            <!-- 天气信息卡片 -->
+            <view wx:if="{{item.type === 'ai' && item.weather}}" class="weather-container">
+              <view class="weather-card">
+                <view class="weather-city">
+                  <text>{{item.weather.city}}天气</text>
+                </view>
+                <view class="weather-info">
+                  <image class="weather-icon" src="{{item.weather.icon}}"></image>
+                  <view class="weather-details">
+                    <text class="temperature">{{item.weather.temperature}}</text>
+                    <text class="weather-desc">{{item.weather.weather}}</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+            
+            <!-- 价格信息卡片 -->
+            <view wx:if="{{item.type === 'ai' && item.priceInfo}}" class="price-container">
+              <view class="price-card">
+                <view class="price-route">
+                  <text>{{item.priceInfo.departure}} → {{item.priceInfo.destination}}</text>
+                </view>
+                <view class="price-value">
+                  <text>¥{{item.priceInfo.price}}起</text>
+                </view>
+              </view>
+            </view>
+            
+            <!-- 时间信息卡片 -->
+            <view wx:if="{{item.type === 'ai' && item.timeInfo}}" class="time-container">
+              <view class="time-card">
+                <view class="time-date">
+                  <text>{{item.timeInfo.date}}</text>
+                </view>
+                <view class="time-list">
+                  <block wx:for="{{item.timeInfo.times}}" wx:for-item="time" wx:key="index" wx:if="{{index < 5}}">
+                    <text class="time-item">{{time}}</text>
+                  </block>
+                  <text wx:if="{{item.timeInfo.times.length > 5}}" class="time-more">...</text>
+                </view>
+              </view>
+            </view>
+            
+            <!-- 查询建议卡片 -->
+            <view wx:if="{{item.type === 'ai' && item.suggestion}}" class="suggestion-container">
+              <view class="suggestion-title">
+                <text wx:if="{{item.suggestion.type === 'ticket'}}">为您找到以下方案：</text>
+                <text wx:elif="{{item.suggestion.type === 'price'}}">查看最新车票信息：</text>
+                <text wx:elif="{{item.suggestion.type === 'time'}}">查看可选车次：</text>
+                <text wx:else>推荐方案：</text>
+              </view>
+              <view class="ticket-suggestion">
+                <view class="route-info">
+                  <view class="route-stations">
+                    <text class="station">{{item.suggestion.departure}}</text>
+                    <view class="route-line"></view>
+                    <text class="station">{{item.suggestion.destination}}</text>
+                  </view>
+                  <view class="route-time">{{item.suggestion.date}} {{item.suggestion.timeRange || '全天'}}</view>
+                </view>
+                <button class="search-btn" data-suggestion="{{item.suggestion}}" bindtap="useTicketSuggestion">查看车票</button>
+              </view>
+            </view>
+          </view>
+        </block>
+        
+        <!-- 加载中提示 -->
+        <view wx:if="{{isLoading}}" class="message ai loading">
+          <view class="loading-dots">
+            <view class="dot"></view>
+            <view class="dot"></view>
+            <view class="dot"></view>
+          </view>
+          <text class="loading-text">{{loadingText}}</text>
+        </view>
+      </scroll-view>
+      
+      <view class="input-container">
+        <view class="input-wrapper">
+          <button class="voice-btn" bindtouchstart="startRecording" bindtouchend="stopRecording">
+            <text class="iconfont icon-mic"></text>
+          </button>
+          <input type="text" class="message-input" placeholder="输入您的出行需求..." value="{{inputValue}}" bindinput="onInputChange" confirm-type="send" bindconfirm="sendMessage" />
+          <button class="send-btn" bindtap="sendMessage" disabled="{{!inputValue}}">
+            <text class="iconfont icon-right"></text>
+          </button>
+        </view>
+        <view class="powered-by">
+          <text>由 DeepSeek 提供智能支持</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<wxs module="filters">
+module.exports = {
+  cleanInput: function(text) {
+    if (!text) return '';
+    // 避免使用复杂的正则表达式，简化处理方式
+    var result = '';
+    for (var i = 0; i < text.length; i++) {
+      var char = text[i];
+      if (char != '[' && char != ']' && 
+          char != '》' && char != '《' && 
+          char != '【' && char != '】') {
+        result += char;
+      }
+    }
+    return result;
+  }
+};
+</wxs>

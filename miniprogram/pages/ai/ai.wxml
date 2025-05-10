@@ -1,0 +1,156 @@
+<!-- AI助手页面 -->
+<view class="ai-container">
+  <!-- 头部标题 -->
+  <view class="header">
+    <view class="title">智能出行助手</view>
+    <view class="ai-model-label">{{useDeepSeek ? 'DeepSeek' : '基础模型'}}</view>
+    <view class="header-menu" bindtap="toggleActions">
+      <icon type="info" size="24" color="#333333" />
+    </view>
+  </view>
+
+  <!-- 操作菜单 -->
+  <view class="action-menu {{showActions ? 'active' : ''}}" wx:if="{{showActions}}">
+    <view class="action-item" bindtap="toggleAIModel">
+      <icon type="success" size="20" color="#333333" />
+      <text>切换AI模型</text>
+    </view>
+    <view class="action-item" bindtap="clearConversation">
+      <icon type="clear" size="20" color="#333333" />
+      <text>清空聊天记录</text>
+    </view>
+  </view>
+
+  <!-- 聊天内容区域 -->
+  <scroll-view 
+    class="chat-container" 
+    scroll-y="true" 
+    scroll-into-view="{{scrollToView}}" 
+    scroll-with-animation="true"
+    enhanced="true"
+    show-scrollbar="true"
+    bounces="true">
+    <view class="chat-list">
+      <block wx:for="{{conversationHistory}}" wx:key="index">
+        <!-- 加载状态 -->
+        <view wx:if="{{item.type === 'loading'}}" class="chat-item">
+          <view class="avatar assistant-avatar">
+            <icon type="waiting" size="24" color="#0066ff" />
+          </view>
+          <view class="message">
+            <view class="message-content assistant-message">
+              <view class="loading-dots">
+                <view class="dot"></view>
+                <view class="dot"></view>
+                <view class="dot"></view>
+              </view>
+            </view>
+          </view>
+        </view>
+        
+        <!-- 用户操作 -->
+        <view wx:elif="{{item.type === 'action'}}" class="chat-item action" id="msg-{{index}}">
+          <view class="message">
+            <view class="message-content action-message">{{item.text}}</view>
+          </view>
+        </view>
+        
+        <!-- 用户消息 -->
+        <view wx:elif="{{item.type === 'user'}}" class="chat-item user" id="msg-{{index}}">
+          <view class="avatar user-avatar">
+            <open-data type="userAvatarUrl"></open-data>
+          </view>
+          <view class="message">
+            <view class="message-content user-message">{{item.text}}</view>
+            <view class="message-time">{{item.time}}</view>
+          </view>
+        </view>
+        
+        <!-- 助手消息 -->
+        <view wx:elif="{{item.type === 'assistant'}}" class="chat-item" id="msg-{{index}}">
+          <view class="avatar assistant-avatar">
+            <icon type="success" size="24" color="#0066ff" />
+          </view>
+          <view class="message">
+            <view class="message-content assistant-message">
+              <text>{{item.text}}</text>
+              
+              <!-- 车票信息卡片 -->
+              <block wx:if="{{item.ticketInfo && item.ticketInfo.departure && item.ticketInfo.destination}}">
+                <view class="ticket-card" 
+                  bindtap="goToTicketList" 
+                  data-departure="{{item.ticketInfo.departure}}"
+                  data-destination="{{item.ticketInfo.destination}}"
+                  data-date="{{item.ticketInfo.date}}">
+                  <view class="ticket-card-header">
+                    <view class="route">
+                      <view class="departure">{{item.ticketInfo.departure}}</view>
+                      <view class="route-arrow">→</view>
+                      <view class="destination">{{item.ticketInfo.destination}}</view>
+                    </view>
+                    <view class="date">{{item.ticketInfo.date}}</view>
+                  </view>
+                  <view class="ticket-card-body">
+                    <view class="ticket-info">
+                      <view class="time-range">
+                        <text>时间：</text>
+                        <text>{{item.ticketInfo.earliestTime || '06:00'}} - {{item.ticketInfo.latestTime || '22:00'}}</text>
+                      </view>
+                      <view class="price">
+                        <text>最低价格：</text>
+                        <text class="price-value">¥{{item.ticketInfo.lowestPrice || '---'}}</text>
+                      </view>
+                    </view>
+                  </view>
+                  <view class="ticket-card-footer">
+                    <view class="ticket-count">共 {{item.ticketInfo.ticketCount || '多'}} 张车票可选</view>
+                    <view class="buy-button">查看详情</view>
+                  </view>
+                </view>
+              </block>
+              
+              <!-- 建议列表 -->
+              <block wx:if="{{item.suggestions && item.suggestions.length > 0}}">
+                <view class="suggestions">
+                  <view class="suggestion-list">
+                    <view 
+                      wx:for="{{item.suggestions}}" 
+                      wx:for-item="suggestion" 
+                      wx:key="index"
+                      class="suggestion-item {{suggestion.type}}"
+                      bindtap="useSuggestion"
+                      data-type="{{suggestion.type}}"
+                      data-text="{{suggestion.text}}"
+                      data-departure="{{suggestion.data.departure}}"
+                      data-destination="{{suggestion.data.destination}}"
+                      data-date="{{suggestion.data.date}}">
+                      {{suggestion.text}}
+                    </view>
+                  </view>
+                </view>
+              </block>
+            </view>
+            <view class="message-time">{{item.time}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+
+  <!-- 输入区域 -->
+  <view class="input-container">
+    <input 
+      class="input-field" 
+      type="text" 
+      value="{{inputValue}}" 
+      placeholder="输入您的出行需求..." 
+      confirm-type="send"
+      bindinput="onInputChange"
+      bindconfirm="sendMessage"
+      focus="{{inputFocus}}"
+    />
+    <view class="send-button {{inputValue ? 'active' : ''}}" bindtap="sendMessage">
+      <icon type="search" size="24" color="{{inputValue ? '#0066ff' : '#999999'}}" />
+    </view>
+  </view>
+</view> 

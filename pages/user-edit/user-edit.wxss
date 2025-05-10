@@ -1,0 +1,107 @@
+/* pages/user-edit/user-edit.wxss */
+.container {
+  padding: 0;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+}
+
+/* 顶部标题 */
+.header {
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border-bottom: 1rpx solid #eee;
+}
+
+.title {
+  font-size: 32rpx;
+  font-weight: 500;
+}
+
+/* 表单区域 */
+.form-section {
+  margin: 30rpx;
+  padding: 30rpx;
+  background-color: #fff;
+  border-radius: 12rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.form-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.label {
+  width: 150rpx;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.input {
+  flex: 1;
+  font-size: 28rpx;
+  color: #333;
+}
+
+/* 提示信息 */
+.tip-section {
+  margin: 0 30rpx;
+}
+
+.tip {
+  font-size: 24rpx;
+  color: #999;
+  line-height: 1.5;
+}
+
+/* 按钮区域 */
+.buttons {
+  margin: 60rpx 30rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cancel-btn, .save-btn {
+  width: 45%;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+}
+
+.cancel-btn {
+  background-color: #f5f5f5;
+  color: #666;
+}
+
+.save-btn {
+  background-color: #2878ff;
+  color: #fff;
+}
+
+/* 加载 */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300rpx;
+}
+
+.loading {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  border: 5rpx solid #f3f3f3;
+  border-top: 5rpx solid #2878ff;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+} 

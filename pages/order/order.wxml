@@ -1,0 +1,86 @@
+<!--pages/order/order.wxml-->
+<view class="container">
+  <view class="header">
+    <text class="title">我的订单</text>
+    <view class="search-icon">
+      <text class="iconfont icon-search"></text>
+    </view>
+  </view>
+  
+  <!-- 标签栏 -->
+  <view class="tabs">
+    <view 
+      class="tab {{index === activeTab ? 'active' : ''}}" 
+      wx:for="{{tabs}}" 
+      wx:key="index" 
+      data-index="{{index}}" 
+      bindtap="switchTab"
+    >
+      <text>{{item}}</text>
+    </view>
+  </view>
+  
+  <!-- 订单列表 -->
+  <view class="order-list">
+    <view wx:if="{{loading}}" class="loading-container">
+      <view class="loading"></view>
+    </view>
+    
+    <view wx:elif="{{orders.length === 0}}" class="empty-container">
+      <image class="empty-icon" src="/assets/images/empty-order.png"></image>
+      <text>暂无订单</text>
+    </view>
+    
+    <view wx:else>
+      <view class="order-item" wx:for="{{orders}}" wx:key="_id" bindtap="viewOrderDetail" data-id="{{item._id}}">
+        <view class="order-status-tag {{item.status === '待付款' ? 'pending-payment' : item.status === '待出行' ? 'pending-travel' : 'completed'}}">
+          <text>{{item.status}}</text>
+        </view>
+        
+        <view class="order-header">
+          <text class="order-no">订单号: {{item.orderNo}}</text>
+        </view>
+        
+        <view class="order-route">
+          <view class="station-info">
+            <text class="from-station">{{item.departure}}</text>
+            <text class="route-arrow">→</text>
+            <text class="to-station">{{item.destination}}</text>
+          </view>
+        </view>
+        
+        <view class="departure-info">
+          <text>{{item.date}} {{item.time}} 出发</text>
+        </view>
+        
+        <view class="price-info">
+          <text class="price-label">票价:</text>
+          <text class="price-value">¥ {{item.price}}</text>
+        </view>
+        
+        <view class="order-actions">
+          <button 
+            wx:if="{{item.status === '待付款'}}" 
+            class="pay-btn"
+            catchtap="payOrder"
+            data-id="{{item._id}}"
+          >立即支付</button>
+          
+          <button 
+            wx:if="{{item.status === '待出行'}}" 
+            class="detail-btn"
+            catchtap="viewOrderDetail"
+            data-id="{{item._id}}"
+          >查看详情</button>
+          
+          <button 
+            wx:if="{{item.status === '已完成'}}" 
+            class="rebuy-btn"
+            catchtap="rebuyTicket"
+            data-id="{{item._id}}"
+          >再次购买</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

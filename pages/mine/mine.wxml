@@ -1,0 +1,90 @@
+<!--pages/mine/mine.wxml-->
+<view class="container">
+  <view class="user-profile">
+    <view class="avatar-section">
+      <image class="avatar" src="{{icons.otherIcons.avatar}}" mode="aspectFit"></image>
+    </view>
+    <view class="user-info">
+      <text class="nickname">陈美玲</text>
+      <text class="user-type">白金会员</text>
+      <text class="user-point">积分: 2,580</text>
+    </view>
+  </view>
+  
+  <view class="balance-card">
+    <view class="balance-item">
+      <text class="balance-value">¥ 358.00</text>
+      <text class="balance-label">钱包余额</text>
+    </view>
+    <view class="balance-item">
+      <text class="balance-value">12</text>
+      <text class="balance-label">优惠券</text>
+    </view>
+    <view class="balance-item">
+      <text class="balance-value">2,580</text>
+      <text class="balance-label">积分</text>
+    </view>
+  </view>
+  
+  <view class="function-grid">
+    <view class="function-item">
+      <view class="function-icon">
+        <text class="iconfont icon-ticket"></text>
+      </view>
+      <text class="function-label">购票记录</text>
+    </view>
+    <view class="function-item">
+      <view class="function-icon">
+        <text class="iconfont icon-user-group"></text>
+      </view>
+      <text class="function-label">常用乘车人</text>
+    </view>
+    <view class="function-item">
+      <view class="function-icon">
+        <text class="iconfont icon-location"></text>
+      </view>
+      <text class="function-label">地址管理</text>
+    </view>
+    <view class="function-item">
+      <view class="function-icon">
+        <text class="iconfont icon-star"></text>
+      </view>
+      <text class="function-label">我的收藏</text>
+    </view>
+  </view>
+  
+  <view class="menu-list">
+    <view class="menu-item">
+      <view class="menu-icon">
+        <text class="iconfont icon-service"></text>
+      </view>
+      <text class="menu-label">客服中心</text>
+      <text class="menu-arrow">></text>
+    </view>
+    <view class="menu-item">
+      <view class="menu-icon">
+        <text class="iconfont icon-help"></text>
+      </view>
+      <text class="menu-label">帮助中心</text>
+      <text class="menu-arrow">></text>
+    </view>
+    <view class="menu-item">
+      <view class="menu-icon">
+        <text class="iconfont icon-feedback"></text>
+      </view>
+      <text class="menu-label">意见反馈</text>
+      <text class="menu-arrow">></text>
+    </view>
+    <view class="menu-item">
+      <view class="menu-icon">
+        <text class="iconfont icon-info"></text>
+      </view>
+      <text class="menu-label">关于我们</text>
+      <text class="menu-arrow">></text>
+    </view>
+  </view>
+  
+  <view class="logout-btn-container">
+    <button class="logout-btn">安全退出</button>
+  </view>
+</view>

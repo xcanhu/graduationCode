@@ -1,0 +1,219 @@
+/* pages/ticket-detail/ticket-detail.wxss */
+.container {
+  padding: 0;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+  position: relative;
+  padding-bottom: 120rpx;
+}
+
+/* 顶部导航 */
+.header {
+  position: relative;
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border-bottom: 1rpx solid #eee;
+}
+
+.back-btn {
+  position: absolute;
+  left: 30rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 40rpx;
+  color: #333;
+}
+
+.title {
+  font-size: 32rpx;
+  font-weight: 500;
+}
+
+/* 车票卡片 */
+.ticket-card {
+  margin: 30rpx;
+  padding: 30rpx;
+  background-color: #fff;
+  border-radius: 12rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.route {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30rpx;
+}
+
+.location {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.city {
+  font-size: 36rpx;
+  font-weight: 500;
+  margin-bottom: 10rpx;
+}
+
+.time {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.journey-line {
+  position: relative;
+  flex: 2;
+  height: 30rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.line {
+  width: 80%;
+  height: 2rpx;
+  background-color: #ddd;
+  position: relative;
+}
+
+.line::before, .line::after {
+  content: '';
+  position: absolute;
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background-color: #2878ff;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.line::before {
+  left: -6rpx;
+}
+
+.line::after {
+  right: -6rpx;
+}
+
+.duration {
+  position: absolute;
+  bottom: -40rpx;
+  font-size: 24rpx;
+  color: #666;
+  background-color: #f5f7fa;
+  padding: 4rpx 20rpx;
+  border-radius: 20rpx;
+}
+
+.detail-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+  border-top: 1rpx solid #f5f5f5;
+}
+
+.date {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.price {
+  font-size: 36rpx;
+  font-weight: 500;
+  color: #ff6b6b;
+}
+
+.seats-info {
+  font-size: 24rpx;
+  color: #999;
+  padding-top: 20rpx;
+  border-top: 1rpx solid #f5f5f5;
+}
+
+/* 表单区域 */
+.form-section {
+  margin: 30rpx;
+  padding: 30rpx;
+  background-color: #fff;
+  border-radius: 12rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 500;
+  margin-bottom: 30rpx;
+}
+
+.form-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.label {
+  width: 120rpx;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.input {
+  flex: 1;
+  font-size: 28rpx;
+  color: #333;
+}
+
+/* 提示信息 */
+.tip-section {
+  margin: 0 30rpx;
+}
+
+.tip {
+  font-size: 24rpx;
+  color: #999;
+  line-height: 1.5;
+}
+
+/* 底部栏 */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120rpx;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30rpx;
+  box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.total-section {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.total-price {
+  font-size: 36rpx;
+  font-weight: 500;
+  color: #ff6b6b;
+}
+
+.submit-btn {
+  background-color: #2878ff;
+  color: #fff;
+  font-size: 30rpx;
+  padding: 0 60rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+} 

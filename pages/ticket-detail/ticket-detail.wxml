@@ -1,0 +1,84 @@
+<view class="container">
+  <view class="header">
+    <view class="back-btn" bindtap="goBack">
+      <text class="iconfont icon-back"></text>
+    </view>
+    <view class="title">填写订单</view>
+  </view>
+  
+  <view class="ticket-card">
+    <view class="route">
+      <view class="location">
+        <view class="city">{{ticket.departure}}</view>
+        <view class="time">{{ticket.time}}</view>
+      </view>
+      <view class="journey-line">
+        <view class="line"></view>
+        <view class="duration">{{ticket.type}}</view>
+      </view>
+      <view class="location">
+        <view class="city">{{ticket.destination}}</view>
+        <view class="time"></view>
+      </view>
+    </view>
+    
+    <view class="detail-info">
+      <view class="date">{{ticket.date}}</view>
+      <view class="price">¥{{ticket.price}}</view>
+    </view>
+    
+    <view class="seats-info">
+      <text>剩余座位: {{ticket.seats}}</text>
+    </view>
+  </view>
+  
+  <view class="form-section">
+    <view class="section-title">乘客信息</view>
+    
+    <view class="form-item">
+      <text class="label">姓名</text>
+      <input 
+        class="input" 
+        placeholder="请输入乘客姓名" 
+        value="{{passengerName}}"
+        data-field="passengerName"
+        bindinput="onInputChange"
+      />
+    </view>
+    
+    <view class="form-item">
+      <text class="label">手机号</text>
+      <input 
+        class="input" 
+        type="number"
+        placeholder="请输入手机号码" 
+        value="{{passengerPhone}}"
+        data-field="passengerPhone"
+        bindinput="onInputChange"
+      />
+    </view>
+    
+    <view class="form-item">
+      <text class="label">身份证</text>
+      <input 
+        class="input" 
+        placeholder="请输入身份证号" 
+        value="{{passengerIdCard}}"
+        data-field="passengerIdCard"
+        bindinput="onInputChange"
+      />
+    </view>
+  </view>
+  
+  <view class="tip-section">
+    <text class="tip">温馨提示：请确保乘客信息准确无误，以免影响乘车。</text>
+  </view>
+  
+  <view class="footer">
+    <view class="total-section">
+      <text>总计: </text>
+      <text class="total-price">¥{{ticket.price}}</text>
+    </view>
+    <button class="submit-btn" bindtap="submitOrder" loading="{{loading}}">提交订单</button>
+  </view>
+</view> 

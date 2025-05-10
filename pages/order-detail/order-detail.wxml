@@ -1,0 +1,77 @@
+<view class="container">
+  <view class="header">
+    <view class="back-btn" bindtap="goBack">
+      <text class="iconfont icon-back"></text>
+    </view>
+    <view class="title">订单详情</view>
+  </view>
+  
+  <view wx:if="{{loading}}" class="loading-container">
+    <view class="loading"></view>
+  </view>
+  
+  <block wx:elif="{{order}}">
+    <view class="status-section">
+      <view class="status-icon {{order.status === '已取消' ? 'canceled' : ''}}">
+        <text class="iconfont {{order.status === '待支付' ? 'icon-wait' : (order.status === '已完成' ? 'icon-success' : 'icon-cancel')}}"></text>
+      </view>
+      <view class="status-text">{{order.status}}</view>
+    </view>
+    
+    <view class="order-card">
+      <view class="order-header">
+        <text class="order-no">订单号: {{order.orderNo}}</text>
+        <text class="order-time">下单时间: {{order.createTime}}</text>
+      </view>
+      
+      <view class="route">
+        <view class="location">
+          <view class="city">{{order.departure}}</view>
+          <view class="time">{{order.time}}</view>
+        </view>
+        <view class="journey-line">
+          <view class="line"></view>
+          <view class="duration">{{order.type}}</view>
+        </view>
+        <view class="location">
+          <view class="city">{{order.destination}}</view>
+          <view class="time"></view>
+        </view>
+      </view>
+      
+      <view class="detail-info">
+        <view class="date">{{order.date}}</view>
+        <view class="price">¥{{order.price}}</view>
+      </view>
+    </view>
+    
+    <view class="passenger-card">
+      <view class="card-title">乘客信息</view>
+      <view class="passenger-item">
+        <text class="label">姓名</text>
+        <text class="value">{{order.passengerName}}</text>
+      </view>
+      <view class="passenger-item">
+        <text class="label">手机号</text>
+        <text class="value">{{order.passengerPhone}}</text>
+      </view>
+      <view class="passenger-item">
+        <text class="label">身份证</text>
+        <text class="value">{{order.passengerIdCard}}</text>
+      </view>
+    </view>
+    
+    <view class="price-card">
+      <view class="card-title">费用详情</view>
+      <view class="price-item">
+        <text class="label">车票金额</text>
+        <text class="value">¥{{order.price}}</text>
+      </view>
+    </view>
+    
+    <view class="actions" wx:if="{{order.status === '待支付'}}">
+      <button class="cancel-btn" bindtap="cancelOrder">取消订单</button>
+      <button class="pay-btn" bindtap="payOrder">立即支付</button>
+    </view>
+  </block>
+</view> 

@@ -1,0 +1,447 @@
+/* 页面整体样式 */
+.page {
+  background-color: #f8f8f8;
+  min-height: 100vh;
+  padding-bottom: 120rpx;
+}
+
+/* 头部样式 */
+.header {
+  background-color: #15B8A6;
+  padding: 80rpx 30rpx 30rpx;
+  color: #fff;
+}
+
+.app-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* 内容区域样式 */
+.content {
+  padding: 0 30rpx;
+}
+
+/* 搜索卡片样式 */
+.search-card {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-top: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.location-items {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 30rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.location-item {
+  display: flex;
+  align-items: center;
+}
+
+.location-icon {
+  font-size: 40rpx;
+  color: #15B8A6;
+}
+
+.location-name {
+  font-size: 32rpx;
+  font-weight: 500;
+  margin-left: 16rpx;
+}
+
+.location-switch {
+  background-color: #f5f5f5;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.date-item {
+  display: flex;
+  align-items: center;
+  padding: 30rpx 0;
+}
+
+.date-icon {
+  font-size: 40rpx;
+  color: #15B8A6;
+}
+
+.date-info {
+  display: flex;
+  align-items: center;
+  margin-left: 16rpx;
+}
+
+.date-value {
+  font-size: 32rpx;
+  font-weight: 500;
+  margin-right: 20rpx;
+}
+
+.date-day {
+  font-size: 28rpx;
+  color: #999;
+}
+
+.search-btn {
+  background-color: #15B8A6;
+  color: #fff;
+  border-radius: 8rpx;
+  font-size: 32rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  margin-top: 20rpx;
+}
+
+/* 天气卡片样式 */
+.weather-card {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-top: 30rpx;
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.weather-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.weather-title {
+  font-size: 32rpx;
+  font-weight: 500;
+}
+
+.weather-date {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.weather-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.weather-item {
+  flex: 1;
+}
+
+.weather-location {
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+  display: block;
+}
+
+.weather-info {
+  display: flex;
+  align-items: center;
+}
+
+.weather-icon {
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 10rpx;
+}
+
+.weather-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.temperature {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.weather-desc {
+  font-size: 26rpx;
+  color: #666;
+}
+
+/* AI助手样式 */
+.ai-assistant {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-top: 30rpx;
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.ai-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.ai-avatar {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+
+.ai-title {
+  font-size: 32rpx;
+  font-weight: 500;
+  flex: 1;
+}
+
+.use-btn {
+  background-color: #15B8A6;
+  color: #fff;
+  font-size: 24rpx;
+  padding: 8rpx 24rpx;
+  border-radius: 30rpx;
+  height: auto;
+  line-height: 1.5;
+}
+
+.ai-input-section {
+  display: flex;
+  align-items: center;
+  background-color: #f5f5f5;
+  border-radius: 40rpx;
+  padding: 12rpx 20rpx;
+}
+
+.ai-input {
+  flex: 1;
+  height: 60rpx;
+  font-size: 26rpx;
+  padding: 0 20rpx;
+}
+
+.send-btn {
+  width: 60rpx;
+  height: 60rpx;
+  background-color: #15B8A6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+.send-btn .iconfont {
+  color: #fff;
+  font-size: 28rpx;
+}
+
+/* 快捷选择样式 */
+.quick-select {
+  margin-top: 30rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 500;
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+.city-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20rpx;
+}
+
+.city-item {
+  position: relative;
+  height: 120rpx;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+
+.city-bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.city-name {
+  position: absolute;
+  bottom: 16rpx;
+  left: 16rpx;
+  color: #fff;
+  font-size: 28rpx;
+  font-weight: 500;
+  z-index: 2;
+  text-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.5);
+}
+
+/* 热门路线样式 */
+.popular-routes {
+  margin-top: 30rpx;
+}
+
+.routes-list {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 10rpx 20rpx;
+}
+
+.route-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+
+.route-item:last-child {
+  border-bottom: none;
+}
+
+.route-info {
+  display: flex;
+  align-items: center;
+}
+
+.route-icon {
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 20rpx;
+}
+
+.route-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.route-name {
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-bottom: 6rpx;
+}
+
+.route-desc {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.route-price {
+  display: flex;
+  align-items: baseline;
+}
+
+.price-amount {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #FF6B35;
+}
+
+.price-label {
+  font-size: 24rpx;
+  color: #999;
+  margin-left: 4rpx;
+}
+
+/* 优惠活动样式 */
+.promotions {
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+}
+
+.promotion-scroll {
+  width: 100%;
+}
+
+.promotion-list {
+  display: flex;
+  padding: 10rpx 0;
+}
+
+.promo-item {
+  width: 300rpx;
+  height: 160rpx;
+  margin-right: 20rpx;
+  border-radius: 12rpx;
+  overflow: hidden;
+  position: relative;
+}
+
+.promo-image {
+  width: 100%;
+  height: 100%;
+}
+
+.promo-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.6));
+}
+
+.promo-info {
+  position: absolute;
+  bottom: 20rpx;
+  left: 20rpx;
+  color: #fff;
+}
+
+.promo-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  display: block;
+}
+
+.promo-desc {
+  font-size: 24rpx;
+  margin-top: 6rpx;
+  display: block;
+}
+
+/* 底部导航栏样式 */
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100rpx;
+  background-color: #fff;
+  display: flex;
+  border-top: 1rpx solid #eee;
+}
+
+.tab-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tab-item.active .tab-label {
+  color: #15B8A6;
+}
+
+.tab-label {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 6rpx;
+}
+
+/* 图标样式 */
+.iconfont {
+  font-size: 40rpx;
+}

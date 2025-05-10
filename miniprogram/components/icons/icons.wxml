@@ -1,0 +1,5 @@
+<view class="icon" bindtap="onClick" style="width: {{size}}px; height: {{size}}px;">
+  <svg viewBox="0 0 24 24" width="{{size}}" height="{{size}}">
+    <path d="{{icons[type]}}" fill="{{color}}" />
+  </svg>
+</view> 

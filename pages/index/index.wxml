@@ -1,0 +1,12 @@
+<!--index.wxml-->
+<view class="tabbar">
+  <navigator url="/pages/home/home" class="tabbar-item">
+    <text>首页</text>
+  </navigator>
+  <navigator url="/pages/order/order" class="tabbar-item">
+    <text>订单</text>
+  </navigator>
+  <navigator url="/pages/mine/mine" class="tabbar-item">
+    <text>我的</text>
+  </navigator>
+</view>
